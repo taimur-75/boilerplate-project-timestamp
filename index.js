@@ -30,21 +30,21 @@ app.get("/api/:date?", function (req, res) {
   
   // Handle empty date parameter (current date)
   let date;
-  if (!dateString) {
-    date = new Date();
-  } else {
+  if (!dateString) {                                     // If date is is not provided,
+    date = new Date();                                   // assign current date to the variable.
+  } else {                                                                                       // Else -
     // If the dateString is a number (timestamp), convert it to integer
-    if (!isNaN(dateString)) {
-      dateString = parseInt(dateString);
+    if (!isNaN(dateString)) {                            // If it is a Unix Timestamp or number,
+      dateString = parseInt(dateString);                 // convert it to int.
     }
-    date = new Date(dateString);
+    date = new Date(dateString);                         // Then assign it to the variable.
   }
 
   // Check if the date is valid
-  if (date.toString() === "Invalid Date") {
-    res.json({ error: "Invalid Date" });
-  } else {
-    res.json({
+  if (date.toString() === "Invalid Date") {              // If the 'date.toString()' returns "Invalid Date",
+    res.json({ error: "Invalid Date" });                 // respond the json object.
+  } else {                                                                              // Else -
+    res.json({                                           // send response as required.
       unix: date.getTime(),
       utc: date.toUTCString()
     });
